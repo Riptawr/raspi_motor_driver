@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+
+import rospy
 import RPi.GPIO as GPIO
 import time
 
@@ -93,14 +96,23 @@ class AlphaBot(object):
             GPIO.output(self.IN4, GPIO.HIGH)
             self.PWMB.ChangeDutyCycle(0 - left)
 
+    def execute_command(self, command_name):
+        """ Executes the command correlating to the command_name received
+
+        :param command_name: a string, correlating to defined directional commands
+        :return:
+        """
+        return globals().get(command_name, "not found")
+
 
 if __name__ == '__main__':
 
     Ab = AlphaBot()
-    Ab.backward()
     try:
         while True:
+            rospy.loginfo(Ab.execute_command("left"))
             time.sleep(1)
-    except KeyboardInterrupt:
+            rospy.spin()
+    except rospy.ROSInterruptException:
         GPIO.cleanup()
     GPIO.cleanup()

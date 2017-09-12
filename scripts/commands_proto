@@ -11,7 +11,7 @@ class CommandsProto(object):
     def __init__(self):
         rospy.init_node('commands_proto')
 
-        self.sub1 = rospy.Subscriber('/motor_control/command', MoveCommand, self.dummy_handler)
+        self.sub1 = rospy.Subscriber('/raspi_motor_driver/high_level_command', MoveCommand, self.dummy_handler)
 
         rospy.spin()
 

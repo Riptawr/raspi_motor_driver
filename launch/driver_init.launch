@@ -1,6 +1,6 @@
 <launch>
 
   <!-- The proto node -->
-  <node name="camera_client" type="camera_client" pkg="raspi_motor_driver"/>
+  <node name="motor_controller" type="motor_controller" pkg="raspi_motor_driver"/>
 
 </launch>
